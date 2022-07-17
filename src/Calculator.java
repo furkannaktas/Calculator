@@ -54,6 +54,10 @@ public class Calculator implements ActionListener {
 
         }
 
+        for (int i = 0; i < numberButtons.length; i++) {
+
+        }
+
 
 
         frame.add(textField);
