@@ -7,9 +7,9 @@ public class Calculator implements ActionListener {
     JFrame frame;
     JTextField textField;
     JButton[] numberButtons = new JButton[10];  // All numbers
-    JButton[] functionButtons = new JButton[8]; //All function buttons +, - etc
+    JButton[] functionButtons = new JButton[9]; //All function buttons +, - etc
     JButton addButton, subButton, multiplyButton, divideButton;
-    JButton decimalButton, equalButton, deleteButton, clearButton;
+    JButton decimalButton, equalButton, deleteButton, clearButton, negativeButton;
     JPanel panel;
 
 
@@ -37,6 +37,7 @@ public class Calculator implements ActionListener {
         equalButton = new JButton("=");
         deleteButton = new JButton("Delete");
         clearButton = new JButton("Clear");
+        negativeButton = new JButton("(-)");
 
         functionButtons[0] = addButton;
         functionButtons[1] = subButton;
@@ -46,6 +47,8 @@ public class Calculator implements ActionListener {
         functionButtons[5] = equalButton;
         functionButtons[6] = deleteButton;
         functionButtons[7] = clearButton;
+        functionButtons[8] = negativeButton;
+
 
         for (int i = 0; i < functionButtons.length ; i++) {
             functionButtons[i].addActionListener(this);
@@ -62,8 +65,9 @@ public class Calculator implements ActionListener {
 
         }
 
-        deleteButton.setBounds(50,430,145,50);
-        clearButton.setBounds(205,430,145,50);
+        negativeButton.setBounds(50,430,100,50);
+        deleteButton.setBounds(150,430,100,50);
+        clearButton.setBounds(250,430,100,50);
 
         panel = new JPanel();
         panel.setBounds(50,100,300,300);
@@ -88,9 +92,8 @@ public class Calculator implements ActionListener {
         panel.add(divideButton);
 
 
-
-
         frame.add(panel);
+        frame.add(negativeButton)
         frame.add(deleteButton);
         frame.add(clearButton);
         frame.add(textField);
@@ -174,6 +177,14 @@ public class Calculator implements ActionListener {
             for (int i = 0; i < str.length()-1 ; i++) {
                 textField.setText(textField.getText()+str.charAt(i));
             }
+        }
+
+        if(e.getSource() == negativeButton){                       // Delete button functionality (deletes the last char)
+
+            double temporary =  Double.parseDouble(textField.getText());
+            temporary*=-1;
+            textField.setText(String.valueOf(temporary));
+
         }
 
     }
