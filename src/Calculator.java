@@ -88,6 +88,8 @@ public class Calculator implements ActionListener {
         panel.add(divideButton);
 
 
+
+
         frame.add(panel);
         frame.add(deleteButton);
         frame.add(clearButton);
@@ -105,5 +107,61 @@ public class Calculator implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        for (int i = 0; i < numberButtons.length ; i++) {
+
+            if(e.getSource() == numberButtons[i]){
+                textField.setText(textField.getText().concat(String.valueOf(i)));
+            }
+        }
+
+        if(e.getSource() == decimalButton){
+            textField.setText(textField.getText().concat("."));
+        }
+
+        if(e.getSource() == addButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator ='+';
+            textField.setText("");
+        }
+
+        if(e.getSource() == subButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator ='-';
+            textField.setText("");
+        }
+
+        if(e.getSource() == multiplyButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator ='*';
+            textField.setText("");
+        }
+
+        if(e.getSource() == divideButton){
+            num1 = Double.parseDouble(textField.getText());
+            operator ='/';
+            textField.setText("");
+        }
+
+        if(e.getSource() == equalButton){
+            num2 = Double.parseDouble(textField.getText());
+
+            switch (operator){
+                case '+':
+                    result = num1+num2;
+                    break;
+                case '-':
+                    result = num1-num2;
+                    break;
+                case '*':
+                    result = num1*num2;
+                    break;
+                case '/':
+                    result = num1/num2;
+                    break;
+            }
+            textField.setText(String.valueOf(result));          // Assign the result into the result box
+            num1=result;                                        // Now the num1 is the result
+
+        }
     }
 }
